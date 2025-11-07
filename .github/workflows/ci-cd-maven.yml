@@ -81,8 +81,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push image
-        working-directory: ${{ github.workspace }}
         run: |
+          cd ${{ github.workspace }}
           IMAGE_TAG=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}
           docker build -t $IMAGE_TAG .
           docker push $IMAGE_TAG
